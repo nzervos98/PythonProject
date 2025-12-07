@@ -14,6 +14,10 @@ def get_db():
 
 @app.route("/")
 def index():
+    render_template('home.html')
+
+@app.route("/skl")
+def index_skl():
     #extract args in html filter sections w/ get
     q = request.args.get("q", "").strip()
     category = request.args.get("category", "").strip()
@@ -57,7 +61,7 @@ def index():
     cur.execute(sql, params)
     rows = cur.fetchall()
 
-    return render_template("index.html",
+    return render_template("index_skl.html",
                            products=rows,
                            categories=categories,
                            subcategories=subcategories,
