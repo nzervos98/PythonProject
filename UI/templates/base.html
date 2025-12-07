@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Σκλαβενίτης Price Tracker</title>
+
+    <!-- PicoCSS για καθαρό UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <style>
+      /* ----- Layout ----- */
+      .filters {
+        position: sticky;
+        top: 0;
+        background: var(--pico-background-color);
+        padding: 0.6rem 0;
+        z-index: 5;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      /* ----- Product Card ----- */
+      .product-card {
+        border: 1px solid #e5e5e5;
+        border-radius: 0.6rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .product-card header {
+        margin-bottom: 0.5rem;
+      }
+
+      .product-card footer {
+        margin-top: 0.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* ----- Center Body ----- */
+      .product-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* ----- Typography ----- */
+      .prod-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .cat-sub {
+        font-size: 0.8rem;
+        color: var(--pico-muted-color);
+        margin-bottom: 0.4rem;
+      }
+
+      .cat-sub .cat,
+      .cat-sub .subcat {
+        display: inline;
+        word-break: break-word;
+      }
+
+      /* ----- Price (in badge) ----- */
+      .price-line {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 0.35rem 0.6rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        margin: 0.3rem 0;
+      }
+
+      .price-line .price-kg {
+        font-size: 0.85rem;
+        font-weight: normal;
+        color: #666;
+      }
+
+      .muted {
+        color: #555;
+        font-size: 0.9em;
+      }
+
+      /* ----- Actions / Buttons ----- */
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .fav {
+        cursor: pointer;
+        font-size: 1.3rem;
+        background: none;
+        border: none;
+        color: #999;
+        line-height: 1;
+        padding: 0;
+      }
+
+      .fav.on {
+        color: #d97706;
+      }
+
+      .fav:focus {
+        outline: 2px solid var(--pico-primary);
+        outline-offset: 2px;
+      }
+
+      /* ----- Table ιστορικού ----- */
+      .history-table {
+        width: 100%;
+      }
+
+      .history-table th,
+      .history-table td {
+        text-align: left;
+        padding: 0.2rem 0.3rem;
+      }
+
+      /* ----- Dark Mode ----- */
+      @media (prefers-color-scheme: dark) {
+        .product-card {
+          background: var(--pico-background-color);
+          border: 1px solid #444;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        }
+        .price-line { background: #222; border-color: #444; color: #eee; }
+        .price-line .price-kg { color: #aaa; }
+        .muted { color: #aaa; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
