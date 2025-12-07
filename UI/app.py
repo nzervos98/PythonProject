@@ -14,7 +14,7 @@ def get_db():
 
 @app.route("/")
 def index():
-    render_template('home.html')
+    return render_template('home.html')
 
 @app.route("/skl")
 def index_skl():
