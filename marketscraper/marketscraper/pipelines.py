@@ -1,17 +1,10 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
-# useful for handling different item types with a single interface
 import sqlite3
 from itemadapter import ItemAdapter
 from datetime import date
+import os
 
 class SQLitePipeline:
     def open_spider(self, spider):
-        # Δημιουργία σύνδεσης με SQLite DB
         self.connection = sqlite3.connect("products.db")
         self.cursor = self.connection.cursor()
         self.create_tables()
@@ -46,55 +39,47 @@ class SQLitePipeline:
         """)
 
     def process_item(self, item, spider):
-        #print(f"📥 Λήφθηκε item για κατηγορία: {item.get('category')}")
         adapter = ItemAdapter(item)
         category = adapter.get('category')
         subcategory = adapter.get('subcategory')
         products = adapter.get('products')
 
+
         for prod in products:
-            #print(f"  ➤ {prod.get('name')} | {prod.get('price')}€")
             name = prod.get('name')
             price = prod.get('price')
             price_kg = prod.get('price/kg')
 
-            # Εισαγωγή ή ενημέρωση του προϊόντος
             self.cursor.execute("""
-                                INSERT
-                                OR IGNORE INTO products (name, category, subcategory, price, price_kg, last_seen)
+                INSERT OR IGNORE INTO products (name, category, subcategory, price, price_kg, last_seen)
                 VALUES (?, ?, ?, ?, ?, ?)
-                                """, (name, category, subcategory, price, price_kg, str(date.today())))
+            """, (name, category, subcategory, price, price_kg, str(date.today())))
 
-            # Αν υπάρχει ήδη, κάνουμε update την τελευταία τιμή/ημερομηνία
+            #Block to notify price change
+            #Δεδομένου ότι περιέχεται το προϊόν στο table, και έρχεται απλά με νέα τιμή.
+            #Γίνεται ignore στο instert και θα πάει για update τιμής.
+            #Πρίν το update τιμής, φέρνω το παλιό με μια select και συγκρίνω.
+            #Αν υπάρχει διαφορά τιμής υπάρχοντος αγαπημένου προϊόντος, ειδοποιείται.
             self.cursor.execute("""
-                                UPDATE products
-                                SET price     = ?,
-                                    price_kg  = ?,
-                                    last_seen = ?
-                                WHERE name = ?
-                                  AND category = ?
-                                  AND subcategory = ?
-                                """, (price, price_kg, str(date.today()), name, category, subcategory))
+                SELECT name, price, favorite
+                FROM products
+                WHERE name = ? AND category = ? AND subcategory = ?
+            """, (name, category, subcategory))
+            row = self.cursor.fetchone()
 
-            # Λήψη του ID για το ιστορικό
+            if row[0] == name and row[2] == 1 and not row[1] == price:
+                with open("copy.txt", "a", encoding="utf-8") as file:
+                    file.write(f'Αγαπημένο {prod['name']}\n'
+                               f'Νέα τιμή: {prod["price"]}\n'
+                               f'Παλιά τιμή: {row[1]}\n\n')
+
+
+            #upd database with new price
             self.cursor.execute("""
-                                SELECT id
-                                FROM products
-                                WHERE name = ?
-                                  AND category = ?
-                                  AND subcategory = ?
-                                """, (name, category, subcategory))
-            product_id = self.cursor.fetchone()[0]
-
-            # Εισαγωγή στο ιστορικό τιμών
-            self.cursor.execute("""
-                                INSERT INTO price_history (product_id, price, price_kg, date)
-                                VALUES (?, ?, ?, ?)
-                                """, (product_id, price, price_kg, str(date.today())))
-
-        return item
+                UPDATE products
+                SET price=?, price_kg=?, last_seen=?
+                WHERE name=? AND category=? AND subcategory=?
+            """, (price, price_kg, str(date.today()), name, category, subcategory))
 
 
-class MarketscraperPipeline:
-    def process_item(self, item, spider):
         return item
