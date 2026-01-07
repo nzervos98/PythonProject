@@ -14,10 +14,15 @@ class SQLitePipeline:
         self.cursor = self.connection.cursor()
         self.create_tables()
         self.price_fluct_lines = []
+        self.favorite_items = []
 
     def close_spider(self, spider):
 
-        body = "\n".join(self.price_fluct_lines)
+        self.collect_fav()
+        body = "Αγαπημένα\n"
+        body += "\n".join(self.favorite_items)
+        body += "\n\nΑλλαγή τιμής\n"
+        body += "\n".join(self.price_fluct_lines)
         self.send_mail(body)
 
         self.connection.commit()
@@ -54,9 +59,6 @@ class SQLitePipeline:
         subcategory = adapter.get('subcategory')
         products = adapter.get('products')
 
-        price_fluct = []
-
-
         for prod in products:
             name = prod.get('name')
             price = prod.get('price')
@@ -69,7 +71,7 @@ class SQLitePipeline:
 
             #Block to notify price change
             #Δεδομένου ότι περιέχεται το προϊόν στο table, και έρχεται απλά με νέα τιμή.
-            #Γίνεται ignore στο instert και θα πάει για update τιμής.
+            #Γίνεται ignore στο insert και θα πάει για update τιμής.
             #Πρίν το update τιμής, φέρνω το παλιό με μια select και συγκρίνω.
             #Αν υπάρχει διαφορά τιμής υπάρχοντος αγαπημένου προϊόντος, ειδοποιείται.
             self.cursor.execute("""
@@ -80,11 +82,11 @@ class SQLitePipeline:
             row = self.cursor.fetchone()
 
 
-
+            #append se mia lista gia sunoliko merge twn allagwn, kai pros8hkh sto swma tou email
             if row[0] == name and row[2] == 1 and not row[1] == price:
-                self.price_fluct_lines.append(f'Αγαπημένο {prod['name']}\n'
-                                              f'Νέα τιμή: {prod["price"]}\n'
-                                              f'Παλιά τιμή: {row[1]}\n')
+                self.price_fluct_lines.append(f'{prod['name']}\n'
+                                              f'Νέα τιμή: {prod["price"]}€\n'
+                                              f'Παλιά τιμή: {row[1]}€\n')
 
 
             #upd database with new price
@@ -99,12 +101,22 @@ class SQLitePipeline:
 
     def send_mail(self, body):
         msg = EmailMessage()
-        msg["From"] = "zervolaos29@gmail.com"
-        msg["To"] = "zervolaos29@gmail.com"
-        msg["Subject"] = f"Ekptwseis {date.today()}"
+        msg["From"] = email
+        msg["To"] = email
+        msg["Subject"] = f"Εκπτώσεις {date.today()}"
         msg.set_content(body, subtype="plain", charset="utf-8")
 
         with smtplib.SMTP("smtp.gmail.com", 587) as mailcon:
             mailcon.starttls()
             mailcon.login(email, password)
             mailcon.send_message(msg)
+
+    def collect_fav(self):
+        self.cursor.execute("""
+                            SELECT name, price
+                            FROM products
+                            WHERE favorite=1
+                            """)
+        rows = self.cursor.fetchall()
+        for row in rows:
+            self.favorite_items.append(row[0])
