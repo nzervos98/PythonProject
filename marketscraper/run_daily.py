@@ -13,8 +13,6 @@ VENV_PYTHON = r"C:\Users\user\Documents\Python\PythonProject\.venv\Scripts\pytho
 def run_spider():
     x = datetime.datetime.now()
     print(f"[{x}] ▶️ Εκκίνηση crawl...")
-    with open("marketscraper/copy.txt", "a", encoding="utf-8") as file:
-        file.write(f'----------{date.today()}----------\n')
 
     subprocess.run(
         [VENV_PYTHON, "-m", "scrapy", "crawl", "sklspider"],
@@ -22,7 +20,7 @@ def run_spider():
     )
     y = datetime.datetime.now()
     print(f"[{y}] ✅ Ολοκληρώθηκε.\n"
-          f"Διάρκεια: {y-x}")
+          f"Διάρκεια: {y-x}\n")
 
 
 if __name__ == "__main__":

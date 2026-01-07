@@ -1,15 +1,25 @@
 import sqlite3
+from email.message import EmailMessage
 from itemadapter import ItemAdapter
 from datetime import date
 import os
+import smtplib
+
+email = os.environ["GMAIL_USR"]
+password = os.environ["GMAIL_PW"]
 
 class SQLitePipeline:
     def open_spider(self, spider):
         self.connection = sqlite3.connect("products.db")
         self.cursor = self.connection.cursor()
         self.create_tables()
+        self.price_fluct_lines = []
 
     def close_spider(self, spider):
+
+        body = "\n".join(self.price_fluct_lines)
+        self.send_mail(body)
+
         self.connection.commit()
         self.connection.close()
 
@@ -44,6 +54,8 @@ class SQLitePipeline:
         subcategory = adapter.get('subcategory')
         products = adapter.get('products')
 
+        price_fluct = []
+
 
         for prod in products:
             name = prod.get('name')
@@ -67,11 +79,13 @@ class SQLitePipeline:
             """, (name, category, subcategory))
             row = self.cursor.fetchone()
 
+
+
             if row[0] == name and row[2] == 1 and not row[1] == price:
-                with open("copy.txt", "a", encoding="utf-8") as file:
-                    file.write(f'Αγαπημένο {prod['name']}\n'
-                               f'Νέα τιμή: {prod["price"]}\n'
-                               f'Παλιά τιμή: {row[1]}\n\n')
+                self.price_fluct_lines.append(f'Αγαπημένο {prod['name']}\n'
+                                              f'Νέα τιμή: {prod["price"]}\n'
+                                              f'Παλιά τιμή: {row[1]}\n')
+                print(f"ok: {self.price_fluct_lines}")
 
 
             #upd database with new price
@@ -83,3 +97,15 @@ class SQLitePipeline:
 
 
         return item
+
+    def send_mail(self, body):
+        msg = EmailMessage()
+        msg["From"] = "zervolaos29@gmail.com"
+        msg["To"] = "zervolaos29@gmail.com"
+        msg["Subject"] = f"Ekptwseis {date.today()}"
+        msg.set_content(body, subtype="plain", charset="utf-8")
+
+        with smtplib.SMTP("smtp.gmail.com", 587) as mailcon:
+            mailcon.starttls()
+            mailcon.login(email, password)
+            mailcon.send_message(msg)
