@@ -85,7 +85,6 @@ class SQLitePipeline:
                 self.price_fluct_lines.append(f'Αγαπημένο {prod['name']}\n'
                                               f'Νέα τιμή: {prod["price"]}\n'
                                               f'Παλιά τιμή: {row[1]}\n')
-                print(f"ok: {self.price_fluct_lines}")
 
 
             #upd database with new price
