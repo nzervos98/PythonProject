@@ -119,4 +119,5 @@ class SQLitePipeline:
                             """)
         rows = self.cursor.fetchall()
         for row in rows:
-            self.favorite_items.append(row[0])
+            favorites = f"{row[0]}: {row[1]}€\n"
+            self.favorite_items.append(favorites)

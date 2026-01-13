@@ -1,7 +1,7 @@
 import subprocess
 import datetime
-import os
-from datetime import date
+#import os
+#from datetime import date
 
 # Απόλυτο path του project
 PROJECT_DIR = r"C:\Users\user\Documents\Python\PythonProject\marketscraper\marketscraper"
