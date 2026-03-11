@@ -15,7 +15,7 @@ def run_spider():
     print(f"[{x}] ▶️ Εκκίνηση crawl...")
 
     subprocess.run(
-        [VENV_PYTHON, "-m", "scrapy", "crawl", "sklspider"],
+        [VENV_PYTHON, "-m", "scrapy", "crawl", "sklavenitis"],
         cwd=PROJECT_DIR
     )
     y = datetime.datetime.now()
