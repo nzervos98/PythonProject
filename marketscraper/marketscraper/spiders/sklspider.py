@@ -1,5 +1,4 @@
 import scrapy
-import time
 import math
 import re
 

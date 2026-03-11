@@ -2,13 +2,16 @@ from datetime import date
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from itemadapter import ItemAdapter
-from models import Supermarket, Product, PriceHistory
+from marketscraper.models import Supermarket, Product, PriceHistory
 
 
 class SQLAlchemyPipeline:
 
     def open_spider(self, spider):
-        engine = create_engine("sqlite:///market_product.db")
+        import os
+        DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "market_product.db")
+        engine = create_engine(f"sqlite:///{DB_PATH}")
+
         self.Session = sessionmaker(bind=engine)
 
         # Βρες ή φτιάξε το supermarket record βάσει spider.name
