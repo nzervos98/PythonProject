@@ -6,11 +6,12 @@ import re
 from marketscraper.items import ProdItem, clean_price
 
 class SklSpider(scrapy.Spider):
-    name = "sklspider"
+    name = "sklavenitis"
     #Δεν φεύγει εκτός domain, φαρμάροντας άκυρα πράγματα
     allowed_domains = ["www.sklavenitis.gr"]
     #Ξεκινάμε από κατηγορίες για να τραβήξουμε cats, subcats με τους συνδέσμους για να περιηγηθούμε
     start_urls = ["https://www.sklavenitis.gr/katigories/"]
+
 
     def parse(self, response):
 
@@ -121,6 +122,7 @@ class SklSpider(scrapy.Spider):
 
         #Δημιουργία item
         prod_item = ProdItem()
+
 
         prod_item['category'] = category_name
         prod_item['subcategory'] = subcat_name

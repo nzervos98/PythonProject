@@ -12,7 +12,7 @@ BOT_NAME = "marketscraper"
 SPIDER_MODULES = ["marketscraper.spiders"]
 NEWSPIDER_MODULE = "marketscraper.spiders"
 ITEM_PIPELINES = {
-   'marketscraper.pipelines.SQLitePipeline': 300,
+   'marketscraper.pipelines.SQLAlchemyPipeline': 300,
 }
 
 ADDONS = {}
