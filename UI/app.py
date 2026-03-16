@@ -3,7 +3,7 @@ import sqlite3
 from flask import Flask, render_template, request, jsonify
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "../marketscraper/marketscraper/products.db")
+DB_PATH = os.path.join(BASE_DIR, "../marketscraper/marketscraper/market_product.db")
 
 app = Flask(__name__)
 
