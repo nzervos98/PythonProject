@@ -1,3 +1,4 @@
 .env
 /.venv
 /marketscraper/marketscraper/market_product.db
+/.idea/copilot.data.migration.ask2agent.xml
