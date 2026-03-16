@@ -92,6 +92,8 @@ class AbSpider(scrapy.Spider):
         yield scrapy.Request(url, headers=AB_HEADERS, callback=self.parse_nav)
 
     def parse_nav(self, response):
+        SKIP_CATEGORIES = {"019", "031", "023"}  # Healthy Corner, Κάθε μέρα χαμηλή τιμή, Νέα Προϊόντα
+
         data = response.json()
         nav  = data["data"]["leftHandNavigationBar"]
         tree = nav["categoryTreeList"]
@@ -103,7 +105,7 @@ class AbSpider(scrapy.Spider):
 
         for cat in level1:
             code = cat.get("categoryCode")
-            if not code:
+            if not code or code in SKIP_CATEGORIES:
                 continue
             yield scrapy.Request(
                 build_url(
