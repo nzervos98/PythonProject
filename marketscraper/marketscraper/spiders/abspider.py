@@ -92,7 +92,10 @@ class AbSpider(scrapy.Spider):
         # Ομαδοποίηση ανά firstLevelCategory για σωστή κατηγορία
         by_cat = defaultdict(list)
         for p in products:
+
             cats = p.get("categories") or []
+
+            price_obj = p.get("price") or {}
 
             # Κατηγορία: code 3 ψηφία
             category_name = next(
