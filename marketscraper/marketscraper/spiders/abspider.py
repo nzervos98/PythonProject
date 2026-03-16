@@ -4,7 +4,7 @@ import json
 import urllib.parse
 from collections import defaultdict
 
-from marketscraper.items import ProdItem
+from marketscraper.items import ProdItem, find_price
 
 
 AB_HEADERS = {
@@ -25,7 +25,7 @@ NAV_HASH    = "29a05b50daa7ab7686d28bf2340457e2a31e1a9e4d79db611fcee435536ee01c"
 SEARCH_HASH = "6207aa07553962b9956d475b63737d2b03b3eb7b7e6fa6ffbfc709f9894c5bdd"
 PAGE_SIZE   = 20
 
-
+#Create proper url so that AB knows it is a GraphQL query with persisted query hash and variables, sent by legit browser.
 def build_url(operation, variables, sha256):
     base = "https://www.ab.gr/api/v1/"
     params = {
@@ -34,19 +34,6 @@ def build_url(operation, variables, sha256):
         "extensions":    json.dumps({"persistedQuery": {"version": 1, "sha256Hash": sha256}}, ensure_ascii=False),
     }
     return base + "?" + urllib.parse.urlencode(params)
-
-
-def parse_price_kg(label: str):
-    """Εξάγει float από string τύπου '8,11 €/ κιλ'"""
-    if not label:
-        return None
-    m = re.search(r'[\d,\.]+', label)
-    if not m:
-        return None
-    try:
-        return float(m.group().replace(',', '.'))
-    except ValueError:
-        return None
 
 
 class AbSpider(scrapy.Spider):
@@ -110,7 +97,7 @@ class AbSpider(scrapy.Spider):
             category_name = first_cat.get("name") or ""
 
             # Τιμή/κιλό από supplementaryPriceLabel1 (π.χ. "8,11 €/ κιλ")
-            price_kg = parse_price_kg(price_obj.get("supplementaryPriceLabel1"))
+            price_kg = find_price(price_obj.get("supplementaryPriceLabel1"))
 
             # Υποκατηγορία από URL (3ο segment μετά /el/eshop/)
             url_parts = (p.get("url") or "").strip("/").split("/")
