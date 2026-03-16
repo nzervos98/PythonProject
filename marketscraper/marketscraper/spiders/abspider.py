@@ -92,22 +92,28 @@ class AbSpider(scrapy.Spider):
         # Ομαδοποίηση ανά firstLevelCategory για σωστή κατηγορία
         by_cat = defaultdict(list)
         for p in products:
-            price_obj     = p.get("price") or {}
-            first_cat     = p.get("firstLevelCategory") or {}
-            category_name = first_cat.get("name") or ""
+            cats = p.get("categories") or []
+
+            # Κατηγορία: code 3 ψηφία
+            category_name = next(
+                (c["name"] for c in cats if len(c.get("code", "")) == 3), ""
+            )
+            # Υποκατηγορία: το πιο βαθύ (μακρύτερο code)
+            subcat = ""
+            if cats:
+                deepest = max(cats, key=lambda c: len(c.get("code", "")))
+                if len(deepest.get("code", "")) > 3:
+                    subcat = deepest["name"]
 
             # Τιμή/κιλό από supplementaryPriceLabel1 (π.χ. "8,11 €/ κιλ")
             price_kg = find_price(price_obj.get("supplementaryPriceLabel1"))
 
-            # Υποκατηγορία από URL (3ο segment μετά /el/eshop/)
-            url_parts = (p.get("url") or "").strip("/").split("/")
-            subcat = url_parts[3] if len(url_parts) >= 4 else ""
 
             by_cat[category_name].append({
                 "name":     p.get("name"),
                 "price":    price_obj.get("value"),
                 "price/kg": price_kg,
-                "subcat":   subcat,
+                "subcategory":   subcat,
             })
 
         for cat_name, prods in by_cat.items():
