@@ -29,22 +29,24 @@ class SQLAlchemyPipeline:
         session = self.Session()
 
         category = adapter.get('category')
-        subcategory = adapter.get('subcategory')
-        products = adapter.get('products')
+        item_subcategory = adapter.get('subcategory') or ''
+        products = adapter.get('products') or []
 
         for prod in products:
             name = prod.get('name')
+            if not name:
+                continue
+
             price = prod.get('price')
             price_kg = prod.get('price/kg')
+            subcategory = prod.get('subcat') or item_subcategory
 
-            # Βρες ή φτιάξε το προϊόν
             product = session.query(Product).filter_by(
                 name=name,
                 supermarket_id=self.supermarket_id
             ).first()
 
             if product is None:
-                # Νέο προϊόν → δημιούργησε
                 product = Product(
                     supermarket_id=self.supermarket_id,
                     name=name,
@@ -56,21 +58,19 @@ class SQLAlchemyPipeline:
                     favorite=0
                 )
                 session.add(product)
-
             else:
-                # Υπάρχει ήδη → έλεγξε αν άλλαξε η τιμή
                 if product.favorite == 1 and product.price != price:
                     history = PriceHistory(
                         product_id=product.id,
-                        price=product.price,      # αποθήκευσε την ΠΑΛΙΑ τιμή
+                        price=product.price,
                         price_kg=product.price_kg,
                         date=date.today()
                     )
                     session.add(history)
 
-                # Update
-                product.price     = price
-                product.price_kg  = price_kg
+                product.price = price
+                product.price_kg = price_kg
+                product.subcategory = subcategory
                 product.last_seen = date.today()
 
         session.commit()
