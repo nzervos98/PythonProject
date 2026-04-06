@@ -1,11 +1,16 @@
 import os
 import sqlite3
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "../marketscraper/marketscraper/market_product.db")
 
 app = Flask(__name__)
+
+SUPERMARKETS = {
+    "sklavenitis": "Σκλαβενίτης",
+    "ab":          "ΑΒ Βασιλόπουλος",
+}
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -19,12 +24,12 @@ def get_supermarket_id(conn, name):
     return row[0] if row else None
 
 def get_products(supermarket_name, request_args):
-    q = request_args.get("q", "").strip()
-    category = request_args.get("category", "").strip()
-    subcategory = request_args.get("subcategory", "").strip()
-    favorite = request_args.get("favorite", "").strip()
+    q          = request_args.get("q", "").strip()
+    category   = request_args.get("category", "").strip()
+    subcategory= request_args.get("subcategory", "").strip()
+    favorite   = request_args.get("favorite", "").strip()
 
-    conn = get_db()
+    conn  = get_db()
     sm_id = get_supermarket_id(conn, supermarket_name)
     if sm_id is None:
         return None, [], [], q, category, subcategory, favorite
@@ -45,7 +50,7 @@ def get_products(supermarket_name, request_args):
         )
         subcategories = [r[0] for r in cur.fetchall() if r[0]]
 
-    sql = "SELECT id, name, category, subcategory, price, price_kg, last_seen, favorite FROM products WHERE supermarket_id=?"
+    sql    = "SELECT id, name, category, subcategory, price, price_kg, last_seen, favorite FROM products WHERE supermarket_id=?"
     params = [sm_id]
 
     if q:
@@ -72,14 +77,21 @@ def get_products(supermarket_name, request_args):
 
 @app.route("/")
 def index():
-    return render_template('home.html')
+    return render_template("home.html", supermarkets=SUPERMARKETS)
 
 
-@app.route("/skl")
-def index_skl():
-    rows, categories, subcategories, q, category, subcategory, favorite = get_products("sklavenitis", request.args)
-    return render_template("index_skl.html",
+@app.route("/products/<supermarket>")
+def products(supermarket):
+    if supermarket not in SUPERMARKETS:
+        return redirect(url_for("index"))
+
+    rows, categories, subcategories, q, category, subcategory, favorite = \
+        get_products(supermarket, request.args)
+
+    return render_template("products.html",
                            products=rows,
+                           supermarket=supermarket,
+                           supermarket_name=SUPERMARKETS[supermarket],
                            categories=categories,
                            subcategories=subcategories,
                            selected_category=category,
@@ -87,24 +99,21 @@ def index_skl():
                            query=q,
                            favorite=favorite)
 
+
+# Backward compatibility redirects
+@app.route("/skl")
+def index_skl():
+    return redirect(url_for("products", supermarket="sklavenitis", **request.args))
 
 @app.route("/ab")
 def index_ab():
-    rows, categories, subcategories, q, category, subcategory, favorite = get_products("ab", request.args)
-    return render_template("index_ab.html",
-                           products=rows,
-                           categories=categories,
-                           subcategories=subcategories,
-                           selected_category=category,
-                           selected_subcategory=subcategory,
-                           query=q,
-                           favorite=favorite)
+    return redirect(url_for("products", supermarket="ab", **request.args))
 
 
 @app.route("/toggle-favorite/<int:product_id>", methods=["POST"])
 def toggle_favorite(product_id):
     conn = get_db()
-    cur = conn.cursor()
+    cur  = conn.cursor()
     cur.execute("SELECT favorite FROM products WHERE id=?", (product_id,))
     row = cur.fetchone()
     if not row:
@@ -112,13 +121,14 @@ def toggle_favorite(product_id):
     new_val = 0 if row[0] == 1 else 1
     cur.execute("UPDATE products SET favorite=? WHERE id=?", (new_val, product_id))
     conn.commit()
+    conn.close()
     return jsonify({"ok": True, "favorite": new_val})
 
 
 @app.route("/history/<int:product_id>")
 def history(product_id):
     conn = get_db()
-    cur = conn.cursor()
+    cur  = conn.cursor()
     cur.execute("SELECT name, category, subcategory FROM products WHERE id=?", (product_id,))
     prod = cur.fetchone()
     if not prod:
@@ -128,6 +138,7 @@ def history(product_id):
         (product_id,)
     )
     hist = [dict(price=r[0], price_kg=r[1], date=r[2]) for r in cur.fetchall()]
+    conn.close()
     return jsonify({
         "ok": True,
         "product": {"id": product_id, "name": prod[0], "category": prod[1], "subcategory": prod[2]},
