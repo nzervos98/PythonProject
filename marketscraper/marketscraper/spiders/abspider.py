@@ -210,15 +210,6 @@ class AbSpider(scrapy.Spider):
             )
 
     def _subcat_from_url(self, prod_url, slug_to_name):
-        """
-        URL μορφή: /el/eshop/TopCat/SubCat/SubSubCat/ProductSlug/p/CODE
-
-        Segments μεταξύ eshop και /p/:
-        [TopCat, SubCat?, SubSubCat?, ProductSlug]
-
-        Αφαιρούμε TopCat (index 0) και ProductSlug (τελευταίο).
-        Ψάχνουμε από το βαθύτερο προς τα πάνω στο slug_to_name.
-        """
         if not prod_url:
             return ""
 
@@ -228,19 +219,14 @@ class AbSpider(scrapy.Spider):
         except ValueError:
             return ""
 
-        # [TopCat, SubCat?, SubSubCat?, ProductSlug]
-        cat_slugs = parts[2:p_index]
-
-        # Χρειαζόμαστε τουλάχιστον TopCat + 1 subcat + ProductSlug = 3
-        if len(cat_slugs) < 3:
+        if p_index < 4:
+            self.logger.debug(f"[SHORT_URL] {prod_url}")
             return ""
 
-        # Αφαιρούμε TopCat και ProductSlug, κρατάμε subcat slugs
-        subcat_slugs = cat_slugs[1:-1]
+        subcat_slug = parts[3]
 
-        # Από το βαθύτερο προς τα πάνω
-        for slug in reversed(subcat_slugs):
-            if slug in slug_to_name:
-                return slug_to_name[slug]
+        if subcat_slug not in slug_to_name:
+            self.logger.debug(f"[NO_SUBCAT] {prod_url} | slug={subcat_slug}")
+            return ""
 
-        return ""
+        return slug_to_name[subcat_slug]
