@@ -70,7 +70,8 @@ class SQLAlchemyPipeline:
 
                 product.price = price
                 product.price_kg = price_kg
-                product.subcategory = subcategory
+                if subcategory:
+                    product.subcategory = subcategory
                 product.last_seen = date.today()
 
         session.commit()
