@@ -3,12 +3,10 @@
 
   <h1>Επιλογή Supermarket</h1>
 
-  <article class="product-card">
-    <a href="{{ url_for('index_skl') }}">ΣΚΛΑΒΕΝΙΤΗΣ</a>
-  </article>
-
-  <article class="product-card">
-    <a href="{{ url_for('index_ab') }}">ΑΒ ΒΑΣΙΛΟΠΟΥΛΟΣ</a>
-  </article>
+  {% for key, name in supermarkets.items() %}
+    <article class="product-card">
+      <a href="{{ url_for('products', supermarket=key) }}">{{ name }}</a>
+    </article>
+  {% endfor %}
 
 {% endblock %}
