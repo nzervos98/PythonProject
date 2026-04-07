@@ -154,8 +154,8 @@ class AbSpider(scrapy.Spider):
             price_kg    = find_price(price_obj.get("supplementaryPriceLabel1"))
             prod_url    = p.get("url") or ""
             subcat_name = self._subcat_from_url(prod_url, slug_to_name)
-            manufacturer = p.get("manufacturerName") or ""
-            sub_brand = p.get("manufacturerSubBrandName") or ""
+            manufacturer = (p.get("manufacturerName") or "").strip().lstrip("-").strip()
+            sub_brand = (p.get("manufacturerSubBrandName") or "").strip().lstrip("-").strip()
 
             # Φτιάχνουμε prefix: "ΟΛΥΜΠΟΣ FREELACT" ή "ΟΛΥΜΠΟΣ" ή ""
             if sub_brand:
@@ -165,7 +165,9 @@ class AbSpider(scrapy.Spider):
             else:
                 brand_prefix = ""
 
-            prod_name = p.get("name") or ""
+            prod_name = (p.get("name") or "").strip()
+            if prod_name.startswith("- "):
+                prod_name = prod_name[2:].strip()
             full_name = f"{brand_prefix} {prod_name}" if brand_prefix else prod_name
 
             by_subcat[subcat_name].append({
