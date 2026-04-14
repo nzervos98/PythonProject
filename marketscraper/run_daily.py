@@ -9,21 +9,33 @@ SPIDERS = ["sklavenitis", "ab"]
 
 def run_spider(name):
     start = datetime.datetime.now()
-    print(f"[{start:%Y-%m-%d %H:%M:%S}] ▶️  Εκκίνηση spider: {name} ...")
+
     subprocess.run(
         [VENV_PYTHON, "-m", "scrapy", "crawl", name],
         cwd=PROJECT_DIR
     )
     end = datetime.datetime.now()
-    print(f"[{end:%Y-%m-%d %H:%M:%S}] ✅ {name} ολοκληρώθηκε — διάρκεια: {end - start}\n")
+
+    return start, end, end-start
 
 
 if __name__ == "__main__":
     total_start = datetime.datetime.now()
-    print(f"=== Έναρξη daily crawl: {total_start:%Y-%m-%d %H:%M:%S} ===\n")
+
+    spiderlist = []
 
     for spider in SPIDERS:
-        run_spider(spider)
+        start,end, duration = run_spider(spider)
+        dict = {
+            "spider": spider,
+            "start": start,
+            "end": end,
+            "duration": duration
+        }
+        spiderlist.append(dict.copy())
 
     total_end = datetime.datetime.now()
-    print(f"=== Ολοκλήρωση: {total_end:%Y-%m-%d %H:%M:%S} | Συνολική διάρκεια: {total_end - total_start} ===")
+    print("Αποτελέσματα ανά spider:")
+    for s in spiderlist:
+        print(f"Spider: {s['spider']}\nΈναρξη: {s['start']:%Y-%m-%d %H:%M:%S}\nΟλοκλήρωση: {s['end']:%Y-%m-%d %H:%M:%S}\nΔιάρκεια: {s['duration']}\n")
+    print(f"Εκκίνηση: {total_start:%Y-%m-%d %H:%M:%S}\nΟλοκλήρωση: {total_end:%Y-%m-%d %H:%M:%S}\nΣυνολική διάρκεια: {total_end - total_start}")
