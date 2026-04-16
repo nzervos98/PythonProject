@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-  <h2>Προϊόντα {{ supermarket_name }}</h2>
+  <h2>{{ supermarket_name }}</h2>
+
+  {% if is_unified %}
+    <p class="page-subtitle">Ενιαία προβολή προϊόντων από όλα τα supermarkets.</p>
+  {% endif %}
 
   <form method="get" class="filters">
-    <div class="grid">
+    <div class="grid filter-grid">
       <input type="search" name="q" placeholder="Αναζήτηση ονόματος..." value="{{ query }}">
+
+      {% if is_unified %}
+        <select name="market" onchange="this.form.submit()">
+          <option value="">— Supermarket —</option>
+          {% for sm in available_supermarkets %}
+            <option value="{{ sm }}" {% if selected_market==sm %}selected{% endif %}>
+              {{ supermarkets.get(sm, sm) }}
+            </option>
+          {% endfor %}
+        </select>
+      {% endif %}
 
       <select name="category" onchange="this.form.submit()">
         <option value="">— Κατηγορία —</option>
@@ -31,14 +46,23 @@
   {% if products|length == 0 %}
     <p>Δεν βρέθηκαν προϊόντα.</p>
   {% else %}
-    <div class="grid">
+    <div class="grid products-grid">
       {% for p in products %}
         <article class="product-card">
+          <button
+            class="fav fav-top {% if p['favorite']==1 %}on{% endif %}"
+            onclick="toggleFavorite({{ p['id'] }}, this)"
+            aria-pressed="{{ 'true' if p['favorite']==1 else 'false' }}"
+            title="Εναλλαγή αγαπημένου"
+            type="button">★</button>
+
           <header>
             <strong class="prod-name">{{ p['name'] }}</strong>
             <div class="cat-sub">
-              <span class="cat">{{ p['category'] }}</span> ·
-              <span class="subcat">{{ p['subcategory'] }}</span>
+              <span class="cat">{{ p['canonical_category'] or p['category'] }}</span>
+              {% if p['canonical_subcategory'] or p['subcategory'] %}
+                · <span class="subcat">{{ p['canonical_subcategory'] or p['subcategory'] }}</span>
+              {% endif %}
             </div>
           </header>
 
@@ -53,22 +77,25 @@
                 <span class="price-kg">/ {{ "%0.2f"|format(p['price_kg']) }}€/kg</span>
               {% endif %}
             </p>
+
             <p class="muted">Τελευταία εμφάνιση: {{ p['last_seen'] }}</p>
           </div>
 
           <footer class="actions">
-            {% if p['favorite'] == 1 %}
-              <button class="secondary outline" onclick="showHistory({{ p['id'] }})">Ιστορικό</button>
-            {% endif %}
-            <button
-              class="fav {% if p['favorite']==1 %}on{% endif %}"
-              onclick="toggleFavorite({{ p['id'] }}, this)"
-              aria-pressed="{{ 'true' if p['favorite']==1 else 'false' }}"
-              title="Εναλλαγή αγαπημένου">★</button>
+            <div class="left-actions">
+              {% if p['favorite'] == 1 %}
+                <button class="secondary outline" type="button" onclick="showHistory({{ p['id'] }})">
+                  Ιστορικό
+                </button>
+              {% endif %}
+            </div>
           </footer>
 
-          <div id="hist-{{ p['id'] }}" style="margin-top:.3rem; display:none;">
-            <summary>Ιστορικό τιμών</summary>
+          <div class="supermarket-tag">
+            {{ supermarkets.get(p['supermarket_code'], p['supermarket_code']) if supermarkets else p['supermarket_code'] }}
+          </div>
+
+          <div id="hist-{{ p['id'] }}" class="history-panel" style="display:none;">
             <div class="history"></div>
           </div>
         </article>

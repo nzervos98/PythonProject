@@ -1,33 +1,77 @@
-async function toggleFavorite(id, el){
-  try {
-    const res = await fetch(`/toggle-favorite/${id}`, {method:'POST'});
-    const data = await res.json();
-    if(data.ok){
-      el.classList.toggle('on', data.favorite === 1);
-    } else {
-      alert(data.error || 'Κάτι δεν πήγε καλά');
-    }
-  } catch(e){ alert('Σφάλμα δικτύου'); }
+async function toggleFavorite(productId, btn) {
+  const res = await fetch(`/toggle-favorite/${productId}`, { method: "POST" });
+  const data = await res.json();
+  if (!data.ok) return;
+
+  btn.classList.toggle("on", data.favorite === 1);
+  btn.setAttribute("aria-pressed", data.favorite === 1 ? "true" : "false");
+
+  const article = btn.closest(".product-card");
+  const historyButton = article.querySelector(".secondary.outline");
+
+  if (data.favorite === 1 && !historyButton) {
+    location.reload();
+  } else if (data.favorite === 0) {
+    location.reload();
+  }
 }
 
-async function showHistory(id){
-  const details = document.getElementById(`hist-${id}`);
-  const box = details.querySelector('.history');
-  if(details.style.display === 'none'){
-    const res = await fetch(`/history/${id}`);
-    const data = await res.json();
-    if(data.ok){
-      if(data.history.length === 0){
-        box.innerHTML = "<p class='muted'>Δεν υπάρχει ιστορικό ακόμη.</p>";
-      } else {
-        const rows = data.history.map(h => `<tr><td>${h.date}</td><td>${(h.price ?? 0).toFixed(2)}€</td><td>${(h.price_kg ?? 0).toFixed(2)}€/kg</td></tr>`).join("");
-        box.innerHTML = `<table class="history-table"><thead><tr><th>Ημερομηνία</th><th>Τιμή</th><th>Τιμή/κιλό</th></tr></thead><tbody>${rows}</tbody></table>`;
-      }
-    } else {
-      box.innerHTML = "<p>Σφάλμα φόρτωσης ιστορικού.</p>";
-    }
-    details.style.display = '';
-  } else {
-    details.style.display = 'none';
+async function showHistory(productId) {
+  const box = document.getElementById(`hist-${productId}`);
+  const holder = box.querySelector(".history");
+
+  if (box.style.display === "block") {
+    box.style.display = "none";
+    return;
   }
+
+  const res = await fetch(`/history/${productId}`);
+  const data = await res.json();
+
+  if (!data.ok) {
+    holder.innerHTML = `<p class="history-empty">Αποτυχία φόρτωσης ιστορικού.</p>`;
+    box.style.display = "block";
+    return;
+  }
+
+  const rows = data.history || [];
+
+  if (rows.length === 0) {
+    holder.innerHTML = `
+      <div class="history-card">
+        <div class="history-title">Ιστορικό τιμών</div>
+        <p class="history-empty">Δεν υπάρχει ακόμα διαθέσιμο ιστορικό.</p>
+      </div>
+    `;
+    box.style.display = "block";
+    return;
+  }
+
+  const tableRows = rows.map(r => `
+    <tr>
+      <td>${r.date ?? "-"}</td>
+      <td>${r.price != null ? Number(r.price).toFixed(2) + "€" : "-"}</td>
+      <td>${r.price_kg != null ? Number(r.price_kg).toFixed(2) + "€/kg" : "-"}</td>
+    </tr>
+  `).join("");
+
+  holder.innerHTML = `
+    <div class="history-card">
+      <div class="history-title">Ιστορικό τιμών</div>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Ημερομηνία</th>
+            <th>Τιμή</th>
+            <th>Τιμή/kg</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  box.style.display = "block";
 }
