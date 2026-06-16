@@ -1,0 +1,1377 @@
+version: 1
+supermarkets:
+- ab
+- sklavenitis
+canonical_taxonomy:
+- code: fresh_food
+  label: Φρέσκα Τρόφιμα
+  subcategories:
+  - code: fruits
+    label: Φρούτα
+    sort_order: 10
+  - code: vegetables
+    label: Λαχανικά
+    sort_order: 11
+  - code: herbs
+    label: Βότανα & Μυρωδικά
+    sort_order: 12
+- code: bakery
+  label: Αρτοποιείο
+  subcategories:
+  - code: bread
+    label: Ψωμί
+    sort_order: 20
+  - code: toast_bread
+    label: Ψωμί του Τοστ
+    sort_order: 21
+  - code: rusks
+    label: Φρυγανιές & Παξιμάδια
+    sort_order: 22
+  - code: breadsticks_croutons
+    label: Κριτσίνια & Croutons
+    sort_order: 23
+  - code: pastries
+    label: Κέικ, Κρουασάν & Γλυκά Αρτοποιείου
+    sort_order: 24
+  - code: sweet_breads
+    label: Τσουρέκια & Παραδοσιακά Γλυκά
+    sort_order: 25
+  - code: cookies_rings
+    label: Κουλούρια & Βουτήματα
+    sort_order: 26
+  - code: dough
+    label: Ζύμες, Πίτες & Τορτίγιες
+    sort_order: 27
+  - code: halva
+    label: Χαλβάς
+    sort_order: 28
+- code: dairy_chilled
+  label: Γαλακτοκομικά & Ψυγείο
+  subcategories:
+  - code: milk
+    label: Γάλα
+    sort_order: 30
+  - code: chocolate_milk
+    label: Σοκολατούχα Γάλατα
+    sort_order: 31
+  - code: plant_milk
+    label: Φυτικά Ροφήματα
+    sort_order: 32
+  - code: fridge_juices
+    label: Χυμοί Ψυγείου
+    sort_order: 33
+  - code: yogurt
+    label: Γιαούρτια
+    sort_order: 34
+  - code: kid_yogurts
+    label: Βρεφικά & Παιδικά Γιαούρτια
+    sort_order: 35
+  - code: yogurt_desserts
+    label: Επιδόρπια Γιαουρτιού
+    sort_order: 36
+  - code: protein_desserts
+    label: Πρωτεϊνούχα Γιαούρτια & Γλυκίσματα
+    sort_order: 37
+  - code: chilled_desserts
+    label: Επιδόρπια Ψυγείου
+    sort_order: 38
+  - code: rice_puddings
+    label: Ρυζόγαλα & Γλυκίσματα Ψυγείου
+    sort_order: 39
+  - code: plant_desserts
+    label: Φυτικά Επιδόρπια
+    sort_order: 40
+  - code: butter_cream
+    label: Βούτυρο, Μαργαρίνες & Κρέμες
+    sort_order: 41
+  - code: eggs
+    label: Αυγά
+    sort_order: 42
+  - code: spreads_salads
+    label: Σαλάτες & Αλοιφές
+    sort_order: 43
+  - code: fresh_dough
+    label: Νωπές Ζύμες, Φύλλα & Μαγιά
+    sort_order: 44
+  - code: fresh_pasta_sauces
+    label: Φρέσκα Ζυμαρικά & Σάλτσες
+    sort_order: 45
+  - code: low_fat
+    label: Προϊόντα Χαμηλών Λιπαρών
+    sort_order: 46
+- code: cheese_deli
+  label: Τυριά & Αλλαντικά
+  subcategories:
+  - code: cheese
+    label: Τυριά
+    sort_order: 50
+  - code: cold_cuts
+    label: Αλλαντικά
+    sort_order: 51
+  - code: plant_substitutes
+    label: Φυτικά Αναπληρώματα
+    sort_order: 52
+  - code: mixed_trays
+    label: Σετ Αλλαντικών & Τυριών
+    sort_order: 53
+- code: meat_fish
+  label: Κρέας & Ψάρι
+  subcategories:
+  - code: prepared_meat
+    label: Παρασκευάσματα Κρεάτων & Πουλερικών
+    sort_order: 60
+  - code: beef
+    label: Μοσχάρι
+    sort_order: 61
+  - code: pork
+    label: Χοιρινό
+    sort_order: 62
+  - code: poultry
+    label: Πουλερικά
+    sort_order: 63
+  - code: lamb_goat
+    label: Αρνί & Κατσίκι
+    sort_order: 64
+  - code: minced_meat
+    label: Κιμάς
+    sort_order: 65
+  - code: game
+    label: Κυνήγι
+    sort_order: 66
+  - code: fresh_fish
+    label: Φρέσκα Ψάρια
+    sort_order: 67
+  - code: fish_seafood
+    label: Ψάρια & Θαλασσινά
+    sort_order: 68
+  - code: shellfish
+    label: Οστρακοειδή
+    sort_order: 69
+  - code: cephalopods
+    label: Χταπόδια, Καλαμάρια & Σουπιές
+    sort_order: 70
+  - code: farm_fish
+    label: Ψάρια Ιχθυοκαλλιέργειας
+    sort_order: 71
+- code: frozen
+  label: Κατεψυγμένα
+  subcategories:
+  - code: frozen_vegetables
+    label: Κατεψυγμένα Λαχανικά & Φρούτα
+    sort_order: 80
+  - code: frozen_meals
+    label: Κατεψυγμένα Γεύματα
+    sort_order: 81
+  - code: frozen_meat_fish
+    label: Κατεψυγμένο Κρέας, Ψάρια & Θαλασσινά
+    sort_order: 82
+  - code: frozen_pastry
+    label: Κατεψυγμένες Ζύμες, Πίτες & Πίτσες
+    sort_order: 83
+  - code: frozen_plant_substitutes
+    label: Κατεψυγμένα Φυτικά Αναπληρώματα
+    sort_order: 84
+  - code: ice_cream
+    label: Παγωτά
+    sort_order: 85
+  - code: ice_icecubes
+    label: Παγωτά & Παγάκια
+    sort_order: 86
+- code: pantry
+  label: Παντοπωλείο
+  subcategories:
+  - code: deli
+    label: Delicatessen
+    sort_order: 90
+  - code: international
+    label: Διεθνής Κουζίνα
+    sort_order: 91
+  - code: pasta_rice_legumes
+    label: Ζυμαρικά, Ρύζι & Όσπρια
+    sort_order: 92
+  - code: canned_jarred
+    label: Κονσέρβες, Βαζάκια & Τουρσιά
+    sort_order: 93
+  - code: tomato_products
+    label: Ντοματικά
+    sort_order: 94
+  - code: sauces_condiments
+    label: Σάλτσες, Καρυκεύματα, Dressings & Ζωμοί
+    sort_order: 95
+  - code: oils_vinegars
+    label: Λάδια, Λίπη, Ξύδια & Ελιές
+    sort_order: 96
+  - code: baking
+    label: Υλικά Ζαχαροπλαστικής & Μαγειρικής
+    sort_order: 97
+  - code: flours_sugars
+    label: Άλευρα, Σιμιγδάλια, Ζάχαρη & Υποκατάστατα
+    sort_order: 98
+  - code: spreads_honey
+    label: Μέλι, Μαρμελάδες & Αλείμματα
+    sort_order: 99
+  - code: instant_meals
+    label: Πουρέδες, Σούπες & Noodles
+    sort_order: 100
+  - code: grains
+    label: Σιτηρά, Κινόα, Σόγια & Λοιπά Δημητριακά
+    sort_order: 101
+- code: beverages
+  label: Ποτά
+  subcategories:
+  - code: water
+    label: Νερά
+    sort_order: 110
+  - code: soft_drinks
+    label: Αναψυκτικά, Σόδες & Ενεργειακά
+    sort_order: 111
+  - code: juices
+    label: Χυμοί
+    sort_order: 112
+  - code: coffee
+    label: Καφές
+    sort_order: 113
+  - code: tea
+    label: Τσάι & Αφεψήματα
+    sort_order: 114
+  - code: cocoa_drinks
+    label: Κακάο & Ροφήματα Σοκολάτας
+    sort_order: 115
+  - code: gums_candies
+    label: Τσίχλες & Καραμέλες
+    sort_order: 116
+- code: snacks_breakfast
+  label: Snacks & Πρωινό
+  subcategories:
+  - code: cereals
+    label: Δημητριακά
+    sort_order: 120
+  - code: bars
+    label: Μπάρες & Δημητριακά On-the-go
+    sort_order: 121
+  - code: biscuits
+    label: Μπισκότα
+    sort_order: 122
+  - code: crackers
+    label: Κράκερς
+    sort_order: 123
+  - code: snacks
+    label: Αλμυρά Snacks
+    sort_order: 124
+  - code: chocolate_sweets
+    label: Σοκολάτες & Γλυκίσματα
+    sort_order: 125
+  - code: spreads
+    label: Πραλίνες, Ταχίνι & Φιστικοβούτυρο
+    sort_order: 126
+  - code: traditional_sweets
+    label: Παραδοσιακά Γλυκίσματα
+    sort_order: 127
+  - code: protein_powders
+    label: Πρωτεΐνες σε Σκόνη
+    sort_order: 128
+  - code: nuts_dried_fruits
+    label: Ξηροί Καρποί & Αποξηραμένα Φρούτα
+    sort_order: 129
+- code: household_cleaning
+  label: Καθαριότητα & Χαρτικά
+  subcategories:
+  - code: dish_detergents
+    label: Απορρυπαντικά Πιάτων
+    sort_order: 130
+  - code: laundry_detergents
+    label: Απορρυπαντικά Ρούχων
+    sort_order: 131
+  - code: hand_wash_laundry
+    label: Πλύσιμο Ρούχων στο Χέρι
+    sort_order: 132
+  - code: fabric_softeners
+    label: Μαλακτικά Ρούχων
+    sort_order: 133
+  - code: bleach_boosters
+    label: Λευκαντικά & Ενισχυτικά Πλυσίματος
+    sort_order: 134
+  - code: dishwasher_additives
+    label: Αποσκληρυντικά Πλυντηρίου
+    sort_order: 135
+  - code: home_cleaning
+    label: Καθαριστικά Σπιτιού
+    sort_order: 136
+  - code: cleaning_accessories
+    label: Σύνεργα & Αξεσουάρ Καθαρισμού
+    sort_order: 137
+  - code: paper_goods
+    label: Χαρτικά
+    sort_order: 138
+  - code: air_fresheners
+    label: Αρωματικά Χώρου & Κεριά
+    sort_order: 139
+  - code: insect_control
+    label: Εντομοκτόνα & Εντομοαπωθητικά
+    sort_order: 140
+  - code: clothes_storage
+    label: Φύλαξη & Περιποίηση Ρούχων
+    sort_order: 141
+  - code: ironing_linen
+    label: Σιδέρωμα & Λευκά Είδη
+    sort_order: 142
+  - code: disposables_party
+    label: Είδη Μιας Χρήσης & Πάρτι
+    sort_order: 143
+  - code: home_goods
+    label: Είδη Οικιακής Χρήσης
+    sort_order: 144
+  - code: stationery
+    label: Γραφική Ύλη & Χαρτοπωλείο
+    sort_order: 145
+- code: personal_care
+  label: Προσωπική Περιποίηση
+  subcategories:
+  - code: body_care
+    label: Περιποίηση Σώματος
+    sort_order: 150
+  - code: hair_care
+    label: Περιποίηση Μαλλιών
+    sort_order: 151
+  - code: oral_care
+    label: Στοματική Υγιεινή
+    sort_order: 152
+  - code: hygiene
+    label: Προϊόντα Υγιεινής
+    sort_order: 153
+  - code: mens_care
+    label: Ανδρική Περιποίηση
+    sort_order: 154
+  - code: womens_care
+    label: Γυναικεία Περιποίηση
+    sort_order: 155
+  - code: pharma
+    label: Παραφαρμακευτικά Είδη
+    sort_order: 156
+  - code: shaving
+    label: Ξύρισμα & After Shave
+    sort_order: 157
+  - code: face_care
+    label: Υγιεινή & Περιποίηση Προσώπου
+    sort_order: 158
+  - code: makeup
+    label: Μακιγιάζ & Βερνίκια
+    sort_order: 159
+  - code: child_care
+    label: Βρεφικά & Παιδικά Καλλυντικά
+    sort_order: 160
+- code: baby
+  label: Βρεφικά
+  subcategories:
+  - code: diapers
+    label: Πάνες
+    sort_order: 170
+  - code: baby_wipes
+    label: Μωρομάντηλα
+    sort_order: 171
+  - code: baby_accessories
+    label: Αξεσουάρ για το Μωρό
+    sort_order: 172
+  - code: baby_food
+    label: Βρεφικές & Παιδικές Τροφές
+    sort_order: 173
+  - code: baby_milk
+    label: Βρεφικά & Παιδικά Γάλατα
+    sort_order: 174
+  - code: baby_snacks
+    label: Βρεφικά & Παιδικά Snacks
+    sort_order: 175
+  - code: baby_creams
+    label: Βρεφικές & Παιδικές Κρέμες
+    sort_order: 176
+  - code: baby_care
+    label: Βρεφική Περιποίηση
+    sort_order: 177
+- code: pets
+  label: Κατοικίδια
+  subcategories:
+  - code: cats
+    label: Για Γάτες
+    sort_order: 180
+  - code: dogs
+    label: Για Σκύλους
+    sort_order: 181
+  - code: birds_fish_other
+    label: Πτηνά, Ψάρια & Άλλα Κατοικίδια
+    sort_order: 182
+  - code: other_pets
+    label: Άλλα Κατοικίδια
+    sort_order: 183
+  - code: pet_hygiene
+    label: Υγιεινή Κατοικιδίων
+    sort_order: 184
+- code: ready_meals
+  label: Έτοιμα Γεύματα
+  subcategories:
+  - code: sandwiches
+    label: Σάντουιτς
+    sort_order: 190
+  - code: salads
+    label: Έτοιμες Σαλάτες & Συνοδευτικά
+    sort_order: 191
+  - code: ready_meat_pasta_soups
+    label: Έτοιμα Γεύματα Κρέας, Ζυμαρικά & Σούπες
+    sort_order: 192
+  - code: ready_fish_seafood
+    label: Έτοιμα Γεύματα Ψάρια & Θαλασσινά
+    sort_order: 193
+  - code: pasta_rice_meals
+    label: Γεύματα Ζυμαρικών & Ρυζιού
+    sort_order: 194
+  - code: legume_veg_meals
+    label: Γεύματα Οσπρίων & Λαχανικών
+    sort_order: 195
+  - code: meat_poultry_meals
+    label: Γεύματα με Κρέας & Πουλερικά
+    sort_order: 196
+  - code: fish_sushi_meals
+    label: Γεύματα με Ψάρια, Θαλασσινά & Sushi
+    sort_order: 197
+  - code: oily_vegetable_meals
+    label: Λαδερά
+    sort_order: 198
+  - code: soups
+    label: Σούπες
+    sort_order: 199
+- code: alcohol
+  label: Αλκοολούχα
+  subcategories:
+  - code: wine
+    label: Κρασί
+    sort_order: 200
+  - code: beer
+    label: Μπύρα
+    sort_order: 201
+  - code: cider
+    label: Μηλίτες
+    sort_order: 202
+  - code: spirits
+    label: Ποτά
+    sort_order: 203
+source_mappings:
+  ab:
+  - source_category: Οπωροπωλείο
+    mappings:
+    - source_subcategory: Φρούτα
+      canonical: fresh_food/fruits
+      type: exact_pair
+    - source_subcategory: Λαχανικά
+      canonical: fresh_food/vegetables
+      type: exact_pair
+    - source_subcategory: null
+      canonical: fresh_food/vegetables
+      type: category_fallback
+      notes: Fallback μόνο όταν λείπει υποκατηγορία
+  - source_category: Άρτος Ζαχαροπλαστείο
+    mappings:
+    - source_subcategory: Cakes-Danish-Donuts
+      canonical: bakery/pastries
+      type: exact_pair
+    - source_subcategory: Κουλούρια αλμυρά
+      canonical: bakery/cookies_rings
+      type: exact_pair
+    - source_subcategory: Κουλούρια γλυκά
+      canonical: bakery/cookies_rings
+      type: exact_pair
+    - source_subcategory: Κριτσίνια & Croutons
+      canonical: bakery/breadsticks_croutons
+      type: exact_pair
+    - source_subcategory: Κρουασάν
+      canonical: bakery/pastries
+      type: exact_pair
+    - source_subcategory: Παξιμάδια
+      canonical: bakery/rusks
+      type: exact_pair
+    - source_subcategory: Παραδοσιακά Γλυκά
+      canonical: bakery/sweet_breads
+      type: exact_pair
+    - source_subcategory: Τσουρέκια
+      canonical: bakery/sweet_breads
+      type: exact_pair
+    - source_subcategory: Φρέσκο ψωμί
+      canonical: bakery/bread
+      type: exact_pair
+    - source_subcategory: Φρυγανιές
+      canonical: bakery/rusks
+      type: exact_pair
+    - source_subcategory: Χαλβάς
+      canonical: bakery/halva
+      type: exact_pair
+    - source_subcategory: Ψωμί του τοστ
+      canonical: bakery/toast_bread
+      type: exact_pair
+  - source_category: Έτοιμα Γεύματα
+    mappings:
+    - source_subcategory: Έτοιμα Γεύματα Κρέας,Ζυμαρικά & Σούπες
+      canonical: ready_meals/ready_meat_pasta_soups
+      type: exact_pair
+    - source_subcategory: Έτοιμα Γεύματα Ψάρια & Θαλασσινά
+      canonical: ready_meals/ready_fish_seafood
+      type: exact_pair
+    - source_subcategory: Έτοιμα Σάντουιτς
+      canonical: ready_meals/sandwiches
+      type: exact_pair
+    - source_subcategory: Έτοιμες Σαλάτες
+      canonical: ready_meals/salads
+      type: exact_pair
+  - source_category: Όλα για το μωρό
+    mappings:
+    - source_subcategory: Αξεσουάρ για το μωρό
+      canonical: baby/baby_accessories
+      type: exact_pair
+    - source_subcategory: Βιολογικά
+      canonical: baby/baby_food
+      type: exact_pair
+      notes: Προσωρινό broad mapping
+    - source_subcategory: Βρεφικές τροφές
+      canonical: baby/baby_food
+      type: exact_pair
+    - source_subcategory: Βρεφική Περιποίηση Σώματος
+      canonical: baby/baby_care
+      type: exact_pair
+    - source_subcategory: Μωρομάντηλα
+      canonical: baby/baby_wipes
+      type: exact_pair
+    - source_subcategory: Πάνες Μωρού
+      canonical: baby/diapers
+      type: exact_pair
+  - source_category: Βασικά τυποποιημένα τρόφιμα
+    mappings:
+    - source_subcategory: Delicatessen
+      canonical: pantry/deli
+      type: exact_pair
+    - source_subcategory: Αλεύρι-Σιμιγδάλι
+      canonical: pantry/flours_sugars
+      type: exact_pair
+    - source_subcategory: Διεθνής Κουζίνα
+      canonical: pantry/international
+      type: exact_pair
+    - source_subcategory: Είδη ζαχαροπλαστικής
+      canonical: pantry/baking
+      type: exact_pair
+    - source_subcategory: Ελαιόλαδο & Ελιές
+      canonical: pantry/oils_vinegars
+      type: exact_pair
+    - source_subcategory: Ζάχαρη
+      canonical: pantry/flours_sugars
+      type: exact_pair
+    - source_subcategory: Ζυμαρικά
+      canonical: pantry/pasta_rice_legumes
+      type: exact_pair
+    - source_subcategory: Κονσέρβες
+      canonical: pantry/canned_jarred
+      type: exact_pair
+    - source_subcategory: Μείγματα για γλυκά
+      canonical: pantry/baking
+      type: exact_pair
+    - source_subcategory: Μπαχαρικά-Αλάτι
+      canonical: pantry/sauces_condiments
+      type: exact_pair
+    - source_subcategory: Ξύδι-Λεμόνι
+      canonical: pantry/oils_vinegars
+      type: exact_pair
+    - source_subcategory: Ρύζι - Όσπρια
+      canonical: pantry/pasta_rice_legumes
+      type: exact_pair
+    - source_subcategory: Σάλτσες-Dressings
+      canonical: pantry/sauces_condiments
+      type: exact_pair
+    - source_subcategory: Σούπες-Ζωμοί-Κύβοι-Πουρές
+      canonical: pantry/instant_meals
+      type: exact_pair
+    - source_subcategory: Σπορέλαιο & Μαγειρικά Λίπη
+      canonical: pantry/oils_vinegars
+      type: exact_pair
+  - source_category: Γαλακτοκομικά, Φυτικά Ροφήματα & Είδη Ψυγείου
+    mappings:
+    - source_subcategory: Βούτυρο-Μαργαρίνη
+      canonical: dairy_chilled/butter_cream
+      type: exact_pair
+    - source_subcategory: Γάλα
+      canonical: dairy_chilled/milk
+      type: exact_pair
+    - source_subcategory: Γάλα & Φυτικά Ροφήματα
+      canonical: dairy_chilled/milk
+      type: exact_pair
+      notes: Broad bucket incl. plant milk
+    - source_subcategory: Γιαούρτια
+      canonical: dairy_chilled/yogurt
+      type: exact_pair
+    - source_subcategory: Κρέμες γάλακτος & σαντιγύ
+      canonical: dairy_chilled/butter_cream
+      type: exact_pair
+    - source_subcategory: Κρέμες-Γλυκίσματα
+      canonical: dairy_chilled/chilled_desserts
+      type: exact_pair
+    - source_subcategory: Με Χαμηλά Λιπαρά
+      canonical: dairy_chilled/low_fat
+      type: exact_pair
+    - source_subcategory: Σαλάτες-Αλοιφές
+      canonical: dairy_chilled/spreads_salads
+      type: exact_pair
+    - source_subcategory: Φρέσκες ζύμες-Φύλλα-Μαγιά
+      canonical: dairy_chilled/fresh_dough
+      type: exact_pair
+    - source_subcategory: Φυτικά Ροφήματα
+      canonical: dairy_chilled/plant_milk
+      type: exact_pair
+    - source_subcategory: Χυμοί ψυγείου
+      canonical: dairy_chilled/fridge_juices
+      type: exact_pair
+    - source_subcategory: Αυγά
+      canonical: dairy_chilled/eggs
+      type: exact_pair
+  - source_category: Γιαούρτια, Κρέμες γάλακτος & Επιδόρπια ψυγείου
+    mappings:
+    - source_subcategory: Γιαούρτια
+      canonical: dairy_chilled/yogurt
+      type: exact_pair
+    - source_subcategory: Επιδόρπια Ψυγείου
+      canonical: dairy_chilled/chilled_desserts
+      type: exact_pair
+    - source_subcategory: Βούτυρο & Κρέμες
+      canonical: dairy_chilled/butter_cream
+      type: exact_pair
+  - source_category: Για κατοικίδια
+    mappings:
+    - source_subcategory: Αλλα κατοικίδια
+      canonical: pets/other_pets
+      type: exact_pair
+    - source_subcategory: Για γάτες
+      canonical: pets/cats
+      type: exact_pair
+    - source_subcategory: Για σκύλους
+      canonical: pets/dogs
+      type: exact_pair
+    - source_subcategory: Υγιεινή ζώων
+      canonical: pets/pet_hygiene
+      type: exact_pair
+  - source_category: Είδη προσωπικής περιποίησης
+    mappings:
+    - source_subcategory: Ανδρική περιποίηση
+      canonical: personal_care/mens_care
+      type: exact_pair
+    - source_subcategory: Αντηλιακά
+      canonical: personal_care/body_care
+      type: exact_pair
+      notes: Temporary body care mapping
+    - source_subcategory: Γυναικεία περιποίηση
+      canonical: personal_care/womens_care
+      type: exact_pair
+    - source_subcategory: Παραφαρμακευτικά Είδη
+      canonical: personal_care/pharma
+      type: exact_pair
+    - source_subcategory: Προσωπική υγιεινή
+      canonical: personal_care/hygiene
+      type: exact_pair
+    - source_subcategory: Στοματική υγιεινή
+      canonical: personal_care/oral_care
+      type: exact_pair
+    - source_subcategory: Φροντίδα μαλλιών
+      canonical: personal_care/hair_care
+      type: exact_pair
+    - source_subcategory: Φροντίδα σώματος
+      canonical: personal_care/body_care
+      type: exact_pair
+  - source_category: Κάβα, αναψυκτικά, νερά, ξηροί καρποί
+    mappings:
+    - source_subcategory: Aποξηραμένα φρούτα
+      canonical: snacks_breakfast/nuts_dried_fruits
+      type: exact_pair
+    - source_subcategory: Αναψυκτικά
+      canonical: beverages/soft_drinks
+      type: exact_pair
+    - source_subcategory: Βιολογικά
+      canonical: beverages/juices
+      type: exact_pair
+      notes: Temporary broad mapping
+    - source_subcategory: Κρασιά
+      canonical: alcohol/wine
+      type: exact_pair
+    - source_subcategory: Μπύρες
+      canonical: alcohol/beer
+      type: exact_pair
+    - source_subcategory: Νερά
+      canonical: beverages/water
+      type: exact_pair
+    - source_subcategory: Ξηροί καρποί
+      canonical: snacks_breakfast/nuts_dried_fruits
+      type: exact_pair
+    - source_subcategory: Ποτά
+      canonical: alcohol/spirits
+      type: exact_pair
+    - source_subcategory: Χυμοί εκτός ψυγείου
+      canonical: beverages/juices
+      type: exact_pair
+  - source_category: Καθαριστικά - Χαρτικά & είδη σπιτιού
+    mappings:
+    - source_subcategory: Αξεσουάρ καθαρισμού
+      canonical: household_cleaning/cleaning_accessories
+      type: exact_pair
+    - source_subcategory: Απορρυπαντικά Πιάτων
+      canonical: household_cleaning/dish_detergents
+      type: exact_pair
+    - source_subcategory: Απορρυπαντικά Πλυντηρίου Ρούχων
+      canonical: household_cleaning/laundry_detergents
+      type: exact_pair
+    - source_subcategory: Απορρυπαντικά για πλύσιμο στο χέρι
+      canonical: household_cleaning/hand_wash_laundry
+      type: exact_pair
+    - source_subcategory: Αποσκληρυντικά πλυντηρίου
+      canonical: household_cleaning/dishwasher_additives
+      type: exact_pair
+    - source_subcategory: Αρωματικά-Κεριά
+      canonical: household_cleaning/air_fresheners
+      type: exact_pair
+    - source_subcategory: Γραφική Ύλη & Αναλώσιμα
+      canonical: household_cleaning/stationery
+      type: exact_pair
+    - source_subcategory: Δώρα & Παιχνίδια
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Είδη οικιακής χρήσης
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+    - source_subcategory: Είδη σιδερώματος-Λευκά Είδη
+      canonical: household_cleaning/ironing_linen
+      type: exact_pair
+    - source_subcategory: Εντομοαπωθητικά-Εντομοκτόνα
+      canonical: household_cleaning/insect_control
+      type: exact_pair
+    - source_subcategory: Εποχιακά Είδη
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Καθαριστικά
+      canonical: household_cleaning/home_cleaning
+      type: exact_pair
+    - source_subcategory: Λευκαντικά & Ενισχυτικά Πλυσίματος
+      canonical: household_cleaning/bleach_boosters
+      type: exact_pair
+    - source_subcategory: Μαλακτικά ρούχων
+      canonical: household_cleaning/fabric_softeners
+      type: exact_pair
+    - source_subcategory: Φύλαξη ρούχων
+      canonical: household_cleaning/clothes_storage
+      type: exact_pair
+    - source_subcategory: Χαρτί oικιακής χρήσης
+      canonical: household_cleaning/paper_goods
+      type: exact_pair
+  - source_category: Κατεψυγμένα τρόφιμα
+    mappings:
+    - source_subcategory: Κατεψυγμένα Έτοιμα Φαγητά
+      canonical: frozen/frozen_meals
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένα Ψάρια & Θαλασσινά
+      canonical: frozen/frozen_meat_fish
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένα φρούτα & λαχανικά
+      canonical: frozen/frozen_vegetables
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένες Πίτσες & Φύλλα & Πίτες
+      canonical: frozen/frozen_pastry
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένο Κρέας
+      canonical: frozen/frozen_meat_fish
+      type: exact_pair
+    - source_subcategory: Παγωτά
+      canonical: frozen/ice_cream
+      type: exact_pair
+  - source_category: Πρωινό - snacking & ροφήματα
+    mappings:
+    - source_subcategory: Βιολογικά
+      canonical: snacks_breakfast/cereals
+      type: exact_pair
+      notes: Temporary broad mapping
+    - source_subcategory: Δημητριακά
+      canonical: snacks_breakfast/cereals
+      type: exact_pair
+    - source_subcategory: Κακάο-Σοκολάτα ρόφημα
+      canonical: beverages/cocoa_drinks
+      type: exact_pair
+    - source_subcategory: Καραμέλες
+      canonical: beverages/gums_candies
+      type: exact_pair
+    - source_subcategory: Καφές
+      canonical: beverages/coffee
+      type: exact_pair
+    - source_subcategory: Κράκερς
+      canonical: snacks_breakfast/crackers
+      type: exact_pair
+    - source_subcategory: Μέλι
+      canonical: pantry/spreads_honey
+      type: exact_pair
+    - source_subcategory: Μαρμελάδες
+      canonical: pantry/spreads_honey
+      type: exact_pair
+    - source_subcategory: Μπισκότα
+      canonical: snacks_breakfast/biscuits
+      type: exact_pair
+    - source_subcategory: Πραλίνα, Φυστικοβούτυρο & Ταχίνι
+      canonical: snacks_breakfast/spreads
+      type: exact_pair
+    - source_subcategory: Σνακς
+      canonical: snacks_breakfast/snacks
+      type: exact_pair
+    - source_subcategory: Σοκολάτες
+      canonical: snacks_breakfast/chocolate_sweets
+      type: exact_pair
+    - source_subcategory: Τσάι-Αφεψήματα
+      canonical: beverages/tea
+      type: exact_pair
+    - source_subcategory: Τσίχλες
+      canonical: beverages/gums_candies
+      type: exact_pair
+  - source_category: Τυριά, Φυτικά Αναπληρώματα & Αλλαντικά
+    mappings:
+    - source_subcategory: Τυριά
+      canonical: cheese_deli/cheese
+      type: exact_pair
+    - source_subcategory: Αλλαντικά
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Φυτικά Αναπληρώματα
+      canonical: cheese_deli/plant_substitutes
+      type: exact_pair
+    - source_subcategory: null
+      canonical: cheese_deli/cheese
+      type: category_fallback
+      notes: AB blank subcategory fallback
+  - source_category: Φρέσκο Κρέας & Ψάρια
+    mappings:
+    - source_subcategory: Έτοιμες Λύσεις Κρεοπωλείου
+      canonical: meat_fish/prepared_meat
+      type: exact_pair
+    - source_subcategory: Αρνί - Κατσίκι
+      canonical: meat_fish/lamb_goat
+      type: exact_pair
+    - source_subcategory: Κιμάς
+      canonical: meat_fish/minced_meat
+      type: exact_pair
+    - source_subcategory: Κοτόπουλο
+      canonical: meat_fish/poultry
+      type: exact_pair
+    - source_subcategory: Κυνήγι
+      canonical: meat_fish/game
+      type: exact_pair
+    - source_subcategory: Μοσχάρι
+      canonical: meat_fish/beef
+      type: exact_pair
+    - source_subcategory: Φρέσκα ψάρια & θαλασσινά
+      canonical: meat_fish/fish_seafood
+      type: exact_pair
+    - source_subcategory: Χοιρινό
+      canonical: meat_fish/pork
+      type: exact_pair
+  sklavenitis:
+  - source_category: Έτοιμα Γεύματα
+    mappings:
+    - source_subcategory: Έτοιμες Σαλάτες & Συνοδευτικά γευμάτων
+      canonical: ready_meals/salads
+      type: exact_pair
+    - source_subcategory: Γεύματα Ζυμαρικών & Ρυζιού
+      canonical: ready_meals/pasta_rice_meals
+      type: exact_pair
+    - source_subcategory: Γεύματα Οσπρίων & Λαχανικών
+      canonical: ready_meals/legume_veg_meals
+      type: exact_pair
+    - source_subcategory: Γεύματα με Κρέας & Πουλερικά
+      canonical: ready_meals/meat_poultry_meals
+      type: exact_pair
+    - source_subcategory: Γεύματα με Ψάρια, Θαλασσινά & Sushi
+      canonical: ready_meals/fish_sushi_meals
+      type: exact_pair
+    - source_subcategory: Λαδερά
+      canonical: ready_meals/oily_vegetable_meals
+      type: exact_pair
+    - source_subcategory: Σάντουιτς
+      canonical: ready_meals/sandwiches
+      type: exact_pair
+    - source_subcategory: Σούπες
+      canonical: ready_meals/soups
+      type: exact_pair
+  - source_category: Αλλαντικά
+    mappings:
+    - source_subcategory: Αλλαντικά
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Αλλαντικά Γαλοπούλας & Κοτόπουλου
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Ζαμπόν, Μπέικον & Ωμοπλάτη
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Λουκάνικα
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Πάριζα & Μορταδέλα
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Παραδοσιακά αλλαντικά
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Σαλάμια
+      canonical: cheese_deli/cold_cuts
+      type: exact_pair
+    - source_subcategory: Σετ Αλλαντικών & Τυριών
+      canonical: cheese_deli/mixed_trays
+      type: exact_pair
+  - source_category: Αναψυκτικά, Νερά & Χυμοί
+    mappings:
+    - source_subcategory: Αναψυκτικά, Σόδες & Ενεργειακά ποτά
+      canonical: beverages/soft_drinks
+      type: exact_pair
+    - source_subcategory: Νερά
+      canonical: beverages/water
+      type: exact_pair
+    - source_subcategory: Χυμοί
+      canonical: beverages/juices
+      type: exact_pair
+  - source_category: Απορρυπαντικά & Είδη Καθαρισμού
+    mappings:
+    - source_subcategory: Απορρυπαντικά πιάτων
+      canonical: household_cleaning/dish_detergents
+      type: exact_pair
+    - source_subcategory: Απορρυπαντικά ρούχων
+      canonical: household_cleaning/laundry_detergents
+      type: exact_pair
+    - source_subcategory: Καθαριστικά γενικής χρήσης
+      canonical: household_cleaning/home_cleaning
+      type: exact_pair
+    - source_subcategory: Σύνεργα καθαρισμού
+      canonical: household_cleaning/cleaning_accessories
+      type: exact_pair
+  - source_category: Αυγά, Βούτυρα, Νωπές Ζύμες & Ζωμοί
+    mappings:
+    - source_subcategory: Αυγά
+      canonical: dairy_chilled/eggs
+      type: exact_pair
+    - source_subcategory: Βούτυρα
+      canonical: dairy_chilled/butter_cream
+      type: exact_pair
+    - source_subcategory: Ζωμοί ψυγείου
+      canonical: dairy_chilled/fresh_dough
+      type: exact_pair
+      notes: Προσωρινό mapping
+    - source_subcategory: Ζύμες νωπές
+      canonical: dairy_chilled/fresh_dough
+      type: exact_pair
+    - source_subcategory: Μαργαρίνες
+      canonical: dairy_chilled/butter_cream
+      type: exact_pair
+    - source_subcategory: Φρέσκα Ζυμαρικά & Σάλτσες
+      canonical: dairy_chilled/fresh_pasta_sauces
+      type: exact_pair
+  - source_category: Βρεφικές & Παιδικές τροφές
+    mappings:
+    - source_subcategory: Βρεφικά & Παιδικά γάλατα
+      canonical: baby/baby_milk
+      type: exact_pair
+    - source_subcategory: Βρεφικά & Παιδικά σνακ
+      canonical: baby/baby_snacks
+      type: exact_pair
+    - source_subcategory: Βρεφικά & Παιδικά φαγητά
+      canonical: baby/baby_food
+      type: exact_pair
+    - source_subcategory: Βρεφικές & Παιδικές κρέμες
+      canonical: baby/baby_creams
+      type: exact_pair
+  - source_category: Γάλατα, Ροφήματα & Χυμοί ψυγείου
+    mappings:
+    - source_subcategory: Γάλατα Σοκολατούχα ψυγείου
+      canonical: dairy_chilled/chocolate_milk
+      type: exact_pair
+    - source_subcategory: Γάλατα ψυγείου
+      canonical: dairy_chilled/milk
+      type: exact_pair
+    - source_subcategory: Φυτικά & Άλλα ροφήματα Ψυγείου
+      canonical: dairy_chilled/plant_milk
+      type: exact_pair
+    - source_subcategory: Χυμοί ψυγείου
+      canonical: dairy_chilled/fridge_juices
+      type: exact_pair
+  - source_category: Γιαούρτια, Κρέμες γάλακτος & Επιδόρπια ψυγείου
+    mappings:
+    - source_subcategory: Γιαούρτια
+      canonical: dairy_chilled/yogurt
+      type: exact_pair
+    - source_subcategory: Γιαούρτια Βρεφικά & Παιδικά
+      canonical: dairy_chilled/kid_yogurts
+      type: exact_pair
+    - source_subcategory: Επιδόρπια γιαουρτιού
+      canonical: dairy_chilled/yogurt_desserts
+      type: exact_pair
+    - source_subcategory: Κρέμες γάλακτος & Σαντιγί
+      canonical: dairy_chilled/butter_cream
+      type: exact_pair
+    - source_subcategory: Πρωτεϊνούχα γιαούρτια, Επιδόρπια & Γλυκίσματα ψυγείου
+      canonical: dairy_chilled/protein_desserts
+      type: exact_pair
+    - source_subcategory: Ρυζόγαλα & Γλυκίσματα ψυγείου
+      canonical: dairy_chilled/rice_puddings
+      type: exact_pair
+    - source_subcategory: Φυτικά επιδόρπια
+      canonical: dairy_chilled/plant_desserts
+      type: exact_pair
+  - source_category: Είδη Αρτοζαχαροπλαστείου
+    mappings:
+    - source_subcategory: Γλυκά
+      canonical: bakery/pastries
+      type: exact_pair
+    - source_subcategory: Κέικ, Τσουρέκια & Κρουασάν
+      canonical: bakery/pastries
+      type: exact_pair
+    - source_subcategory: Κουλούρια & Βουτήματα
+      canonical: bakery/cookies_rings
+      type: exact_pair
+    - source_subcategory: Κριτσίνια, Παξιμάδια & Φρυγανιές
+      canonical: bakery/breadsticks_croutons
+      type: exact_pair
+    - source_subcategory: Πίτες & Τορτίγιες
+      canonical: bakery/dough
+      type: exact_pair
+    - source_subcategory: Ψωμί & Αρτοσκευάσματα
+      canonical: bakery/bread
+      type: exact_pair
+    - source_subcategory: Ψωμί τυποποιημένο
+      canonical: bakery/toast_bread
+      type: exact_pair
+  - source_category: Είδη Οικιακής χρήσης
+    mappings:
+    - source_subcategory: Αρωματικά χώρου, Συλλέκτες υγρασίας & Φίλτρα απορροφητήρα
+      canonical: household_cleaning/air_fresheners
+      type: exact_pair
+    - source_subcategory: Είδη Θυμιάματος
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Είδη Σιδερώματος & Απλώματος
+      canonical: household_cleaning/ironing_linen
+      type: exact_pair
+    - source_subcategory: Είδη Υγραερίου, Αναπτήρες & Σπίρτα
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Εντομοαπωθητικά & Εντομοκτόνα
+      canonical: household_cleaning/insect_control
+      type: exact_pair
+    - source_subcategory: Ηλεκτρικές Μικροσυσκευές
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Καύσιμες ύλες
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Μπαταρίες, Λάμπες, Ηλεκτρολογικά είδη & Ταινίες
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Περιποίηση Υποδημάτων
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Τσάντες πολλαπλών χρήσεων & Ισοθερμικές
+      canonical: household_cleaning/home_goods
+      type: exact_pair
+      notes: Temporary fallback
+    - source_subcategory: Φύλαξη & Περιποίηση ρούχων
+      canonical: household_cleaning/clothes_storage
+      type: exact_pair
+  - source_category: Είδη μιας χρήσης & Είδη Πάρτι
+    mappings:
+    - source_subcategory: Είδη Πάρτι
+      canonical: household_cleaning/disposables_party
+      type: exact_pair
+    - source_subcategory: Είδη Συντήρησης & Ψησίματος τροφίμων
+      canonical: household_cleaning/disposables_party
+      type: exact_pair
+    - source_subcategory: Καλαμάκια & Οδοντογλυφίδες
+      canonical: household_cleaning/disposables_party
+      type: exact_pair
+    - source_subcategory: Σακούλες απορριμμάτων
+      canonical: household_cleaning/disposables_party
+      type: exact_pair
+    - source_subcategory: Σερβίτσια μιας χρήσης
+      canonical: household_cleaning/disposables_party
+      type: exact_pair
+  - source_category: Είδη πρωινού & Ροφήματα
+    mappings:
+    - source_subcategory: Γάλατα & Φυτικά ροφήματα Μακράς διαρκείας
+      canonical: dairy_chilled/plant_milk
+      type: exact_pair
+      notes: Broad bucket incl long-life milk
+    - source_subcategory: Δημητριακά & Μπάρες
+      canonical: snacks_breakfast/bars
+      type: exact_pair
+    - source_subcategory: Καφέδες, Ροφήματα & Αφεψήματα
+      canonical: beverages/coffee
+      type: exact_pair
+      notes: Broad bucket
+    - source_subcategory: Μέλια & Μαρμελάδες
+      canonical: pantry/spreads_honey
+      type: exact_pair
+    - source_subcategory: Πραλίνες, Ταχίνι & Φιστικοβούτυρο
+      canonical: snacks_breakfast/spreads
+      type: exact_pair
+    - source_subcategory: Πρωτεΐνες σε σκόνη
+      canonical: snacks_breakfast/protein_powders
+      type: exact_pair
+  - source_category: Κάβα
+    mappings:
+    - source_subcategory: Κρασιά & Σαμπάνιες
+      canonical: alcohol/wine
+      type: exact_pair
+    - source_subcategory: Μπίρες & Μηλίτες
+      canonical: alcohol/beer
+      type: exact_pair
+    - source_subcategory: Ποτά
+      canonical: alcohol/spirits
+      type: exact_pair
+  - source_category: Καλλυντικά & Είδη Προσωπικής υγιεινής
+    mappings:
+    - source_subcategory: Αντηλιακά
+      canonical: personal_care/body_care
+      type: exact_pair
+    - source_subcategory: Βρεφικά & Παιδικά καλλυντικά
+      canonical: personal_care/child_care
+      type: exact_pair
+    - source_subcategory: Είδη Ξυρίσματος & After Shave
+      canonical: personal_care/shaving
+      type: exact_pair
+    - source_subcategory: Μακιγιάζ & Βερνίκια νυχιών
+      canonical: personal_care/makeup
+      type: exact_pair
+    - source_subcategory: Παραφαρμακευτικά Είδη
+      canonical: personal_care/pharma
+      type: exact_pair
+    - source_subcategory: Στοματική υγιεινή
+      canonical: personal_care/oral_care
+      type: exact_pair
+    - source_subcategory: Υγιεινή & Περιποίηση Προσώπου
+      canonical: personal_care/face_care
+      type: exact_pair
+    - source_subcategory: Φροντίδα Μαλλιών
+      canonical: personal_care/hair_care
+      type: exact_pair
+    - source_subcategory: Φροντίδα Σώματος
+      canonical: personal_care/body_care
+      type: exact_pair
+  - source_category: Κατεψυγμένα
+    mappings:
+    - source_subcategory: Κατεψυγμένα Γεύματα
+      canonical: frozen/frozen_meals
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένα Κρέατα & Πουλερικά
+      canonical: frozen/frozen_meat_fish
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένα Λαχανικά & Φρούτα
+      canonical: frozen/frozen_vegetables
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένα Φυτικά αναπληρώματα
+      canonical: frozen/frozen_plant_substitutes
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένα Ψάρια & Θαλασσινά
+      canonical: frozen/frozen_meat_fish
+      type: exact_pair
+    - source_subcategory: Κατεψυγμένες Ζύμες, Πίτες & Πίτσες
+      canonical: frozen/frozen_pastry
+      type: exact_pair
+    - source_subcategory: Παγωτά & Παγάκια
+      canonical: frozen/ice_icecubes
+      type: exact_pair
+  - source_category: Μπισκότα, Σοκολάτες & Ζαχαρώδη
+    mappings:
+    - source_subcategory: Μπισκότα
+      canonical: snacks_breakfast/biscuits
+      type: exact_pair
+    - source_subcategory: Παστέλια, Μαντολάτα & Λουκούμια
+      canonical: snacks_breakfast/traditional_sweets
+      type: exact_pair
+    - source_subcategory: Σοκολάτες
+      canonical: snacks_breakfast/chocolate_sweets
+      type: exact_pair
+    - source_subcategory: Τσίχλες, Καραμέλες & Γλειφιτζούρια
+      canonical: beverages/gums_candies
+      type: exact_pair
+  - source_category: Ξηροί Καρποί & Σνακ
+    mappings:
+    - source_subcategory: Ξηροί καρποί & Αποξηραμένα φρούτα
+      canonical: snacks_breakfast/nuts_dried_fruits
+      type: exact_pair
+    - source_subcategory: Πατατάκια, Γαριδάκια & άλλα Σνακ
+      canonical: snacks_breakfast/snacks
+      type: exact_pair
+  - source_category: Ορεκτικά & Delicatessen
+    mappings:
+    - source_subcategory: Delicatessen θαλασσινών
+      canonical: pantry/deli
+      type: exact_pair
+      notes: Seafood deli
+    - source_subcategory: Ελιές
+      canonical: pantry/oils_vinegars
+      type: exact_pair
+    - source_subcategory: Καπνιστά Ψάρια
+      canonical: meat_fish/fish_seafood
+      type: exact_pair
+    - source_subcategory: Πατέ & Foie gras
+      canonical: pantry/deli
+      type: exact_pair
+    - source_subcategory: Σαλάτες & Αλοιφές
+      canonical: dairy_chilled/spreads_salads
+      type: exact_pair
+    - source_subcategory: Τουρσιά & Λιαστές ντομάτες
+      canonical: pantry/canned_jarred
+      type: exact_pair
+    - source_subcategory: Χαλβάδες
+      canonical: bakery/halva
+      type: exact_pair
+    - source_subcategory: Ψάρια παστά & σε Λάδι
+      canonical: meat_fish/fish_seafood
+      type: exact_pair
+  - source_category: Τροφές & Είδη για Κατοικίδια
+    mappings:
+    - source_subcategory: Τροφές & Είδη για Γάτες
+      canonical: pets/cats
+      type: exact_pair
+    - source_subcategory: Τροφές & Είδη για Σκύλους
+      canonical: pets/dogs
+      type: exact_pair
+    - source_subcategory: Τροφές για Πτηνά, Ψάρια & άλλα κατοικίδια
+      canonical: pets/birds_fish_other
+      type: exact_pair
+  - source_category: Τρόφιμα Παντοπωλείου
+    mappings:
+    - source_subcategory: Όσπρια
+      canonical: pantry/pasta_rice_legumes
+      type: exact_pair
+    - source_subcategory: Αλεύρια & Σιμιγδάλια
+      canonical: pantry/flours_sugars
+      type: exact_pair
+    - source_subcategory: Ζάχαρη & Υποκατάστατα ζάχαρης
+      canonical: pantry/flours_sugars
+      type: exact_pair
+    - source_subcategory: Ζυμαρικά
+      canonical: pantry/pasta_rice_legumes
+      type: exact_pair
+    - source_subcategory: Κέτσαπ, Μουστάρδες, Μαγιονέζες & Έτοιμες σάλτσες
+      canonical: pantry/sauces_condiments
+      type: exact_pair
+    - source_subcategory: Κονσέρβες & Κομπόστες
+      canonical: pantry/canned_jarred
+      type: exact_pair
+    - source_subcategory: Λάδια & Λίπη
+      canonical: pantry/oils_vinegars
+      type: exact_pair
+    - source_subcategory: Μείγματα για Ζελέ & Γλυκά
+      canonical: pantry/baking
+      type: exact_pair
+    - source_subcategory: Μπαχαρικά, Αλάτια, Ξίδια & Ζωμοί
+      canonical: pantry/sauces_condiments
+      type: exact_pair
+    - source_subcategory: Ντοματικά
+      canonical: pantry/tomato_products
+      type: exact_pair
+    - source_subcategory: Πουρέδες, Σούπες & Noodles
+      canonical: pantry/instant_meals
+      type: exact_pair
+    - source_subcategory: Ρύζια
+      canonical: pantry/pasta_rice_legumes
+      type: exact_pair
+    - source_subcategory: Σιτάρι, Κινόα, Σόγια & άλλα Δημητριακά
+      canonical: pantry/grains
+      type: exact_pair
+    - source_subcategory: Υλικά Μαγειρικής & Ζαχαροπλαστικής
+      canonical: pantry/baking
+      type: exact_pair
+  - source_category: Τυροκομικά & Φυτικά Αναπληρώματα
+    mappings:
+    - source_subcategory: Τυριά
+      canonical: cheese_deli/cheese
+      type: exact_pair
+    - source_subcategory: Φυτικά Αναπληρώματα
+      canonical: cheese_deli/plant_substitutes
+      type: exact_pair
+    - source_subcategory: Ημίσκληρα τυριά
+      canonical: cheese_deli/cheese
+      type: exact_pair
+    - source_subcategory: Μαλακά τυριά
+      canonical: cheese_deli/cheese
+      type: exact_pair
+    - source_subcategory: Σκληρά τυριά
+      canonical: cheese_deli/cheese
+      type: exact_pair
+    - source_subcategory: Τυριά αλειφόμενα & Μίνι τυράκια
+      canonical: cheese_deli/cheese
+      type: exact_pair
+    - source_subcategory: Φέτα & Λευκά τυριά
+      canonical: cheese_deli/cheese
+      type: exact_pair
+  - source_category: Φρέσκα Φρούτα & Λαχανικά
+    mappings:
+    - source_subcategory: Φρούτα
+      canonical: fresh_food/fruits
+      type: exact_pair
+    - source_subcategory: Λαχανικά
+      canonical: fresh_food/vegetables
+      type: exact_pair
+    - source_subcategory: Βότανα & Μυρωδικά
+      canonical: fresh_food/herbs
+      type: exact_pair
+    - source_subcategory: Κομμένα Λαχανικά
+      canonical: fresh_food/vegetables
+      type: exact_pair
+  - source_category: Φρέσκο Κρέας
+    mappings:
+    - source_subcategory: Φρέσκα Αρνιά & Κατσίκια
+      canonical: meat_fish/lamb_goat
+      type: exact_pair
+    - source_subcategory: Φρέσκα Παρασκευάσματα Κρεάτων & Πουλερικών
+      canonical: meat_fish/prepared_meat
+      type: exact_pair
+    - source_subcategory: Φρέσκα Πουλερικά
+      canonical: meat_fish/poultry
+      type: exact_pair
+    - source_subcategory: Φρέσκο Μοσχάρι
+      canonical: meat_fish/beef
+      type: exact_pair
+    - source_subcategory: Φρέσκο Χοιρινό
+      canonical: meat_fish/pork
+      type: exact_pair
+  - source_category: Φρέσκο Ψάρι & Θαλασσινά
+    mappings:
+    - source_subcategory: Οστρακοειδή
+      canonical: meat_fish/shellfish
+      type: exact_pair
+    - source_subcategory: Χταπόδια, Καλαμάρια & Σουπιές
+      canonical: meat_fish/cephalopods
+      type: exact_pair
+    - source_subcategory: Ψάρια Ιχθυοκαλλιέργειας
+      canonical: meat_fish/farm_fish
+      type: exact_pair
+  - source_category: Χαρτικά, Πάνες & Σερβιέτες
+    mappings:
+    - source_subcategory: Βρεφικές & Παιδικές πάνες, Μωρομάντιλα
+      canonical: baby/diapers
+      type: exact_pair
+      notes: Mixed diapers+wipes
+    - source_subcategory: Σερβιέτες & Πάνες ενηλίκων
+      canonical: personal_care/hygiene
+      type: exact_pair
+    - source_subcategory: Χαρτικά
+      canonical: household_cleaning/paper_goods
+      type: exact_pair
+  - source_category: Χαρτοπωλείο
+    mappings:
+    - source_subcategory: Γραφική ύλη & Οργάνωση Γραφείου
+      canonical: household_cleaning/stationery
+      type: exact_pair
+    - source_subcategory: Τετράδια, Μπλοκ, Φάκελοι & Χαρτί Φωτοτυπικό
+      canonical: household_cleaning/stationery
+      type: exact_pair

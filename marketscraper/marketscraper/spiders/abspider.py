@@ -1,7 +1,9 @@
 import scrapy
 import json
 import urllib.parse
+from urllib.parse import urlparse, parse_qs
 from collections import defaultdict
+from playwright.sync_api import sync_playwright
 
 from marketscraper.items import ProdItem, find_price
 
@@ -20,8 +22,30 @@ AB_HEADERS = {
     ),
 }
 
+def get_search_hash():
+    category_url = "https://www.ab.gr/el/eshop/Freska-Trofima/c/001"
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        with page.expect_request(
+            lambda r: "operationName=GetCategoryProductSearch" in r.url,
+            timeout=30000,
+        ) as req:
+            page.goto(category_url, wait_until="domcontentloaded")
+
+        url = req.value.url
+        browser.close()
+
+    qs = parse_qs(urlparse(url).query)
+    extensions = json.loads(qs["extensions"][0])
+
+    return extensions["persistedQuery"]["sha256Hash"]
+
+
 NAV_HASH    = "29a05b50daa7ab7686d28bf2340457e2a31e1a9e4d79db611fcee435536ee01c"
-SEARCH_HASH = "6207aa07553962b9956d475b63737d2b03b3eb7b7e6fa6ffbfc709f9894c5bdd"
+SEARCH_HASH = get_search_hash()
 PAGE_SIZE   = 20
 
 
